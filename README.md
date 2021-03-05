@@ -14,7 +14,7 @@ Items, Collections, and optionally the search parameters are all saved within th
 single file STAC, and so, if present, should be removed when creating a single file catalog.
 
 - Examples:
-  - [STAC example](examples/item.json): Shows the basic usage of the extension in a STAC ItemCollection
+  - [STAC example](examples/item-collection.json): Shows the basic usage of the extension in a STAC ItemCollection
 - [JSON Schema](json-schema/schema.json)
 - [Changelog](./CHANGELOG.md)
 
