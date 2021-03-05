@@ -1,50 +1,30 @@
-# Template Extension Specification
+# Single File STAC Extension Specification
 
-- **Title:** Template
-- **Identifier:** <https://stac-extensions.github.io/template/v1.0.0/schema.json>
-- **Field Name Prefix:** template
+- **Title:** Single File STAC
+- **Identifier:** <https://stac-extensions.github.io/single-file-stac/v1.0.0/schema.json>
+- **Field Name Prefix:** -
 - **Scope:** Item, Collection
 - **Extension [Maturity Classification](https://github.com/radiantearth/stac-spec/tree/master/extensions/README.md#extension-maturity):** Proposal
-- **Owner**: @your-gh-handles @person2
+- **Owner**: @matthewhanson
 
-This document explains the Template Extension to the [SpatioTemporal Asset Catalog](https://github.com/radiantearth/stac-spec) (STAC) specification.
-This is the place to add a short introduction.
+An extension to provide a set of Collections and Items within a single file catalog. The single file is a STAC catalog that contains everything
+that would normally be in a linked set of STAC files. This format is useful to save a portion of a catalog, or when creating a small catalog 
+from derived data that should remain portable. It is most useful for saving the results of a search from a STAC API, as the 
+Items, Collections, and optionally the search parameters are all saved within the single file. Hierarchical links have no meaning in a 
+single file STAC, and so, if present, should be removed when creating a single file catalog.
 
 - Examples:
-  - [Item example](examples/item.json): Shows the basic usage of the extension in a STAC Item
-  - [Collection example](examples/collection.json): Shows the basic usage of the extension in a STAC Collection
+  - [STAC example](examples/item.json): Shows the basic usage of the extension in a STAC ItemCollection
 - [JSON Schema](json-schema/schema.json)
 - [Changelog](./CHANGELOG.md)
 
 ## Item Properties and Collection Fields
 
-| Field Name           | Type                      | Description |
-| -------------------- | ------------------------- | ----------- |
-| template:new_field   | string                    | **REQUIRED**. Describe the required field... |
-| template:xyz         | [XYZ Object](#xyz-object) | Describe the field... |
-| template:another_one | \[number]                 | Describe the field... |
+A Single File STAC is a set of Items and their Collections presented as a [GeoJSON FeatureCollection](https://tools.ietf.org/html/rfc7946#section-3.3) 
+contained in a single file.
 
-### Additional Field Information
-
-#### template:new_field
-
-This is a much more detailed description of the field `template:new_field`...
-
-### XYZ Object
-
-This is the introduction for the purpose and the content of the XYZ Object...
-
-| Field Name  | Type   | Description |
-| ----------- | ------ | ----------- |
-| x           | number | **REQUIRED**. Describe the required field... |
-| y           | number | **REQUIRED**. Describe the required field... |
-| z           | number | **REQUIRED**. Describe the required field... |
-
-## Relation types
-
-The following types should be used as applicable `rel` types in the
-[Link Object](https://github.com/radiantearth/stac-spec/tree/master/item-spec/item-spec.md#link-object).
-
-| Type                | Description |
-| ------------------- | ----------- |
-| fancy-rel-type      | This link points to a fancy resource. |
+| Field Name         | Type   | Description                                                  |
+| ------------------ | ------ | ------------------------------------------------------------ |
+| type               | string | **REQUIRED.** Type of the GeoJSON Object. MUST be set to `FeatureCollection`. |
+| collections | \[[Collection](https://github.com/radiantearth/stac-spec/tree/master/collection-spec/collection-spec.md#collection-fields)] | An array of STAC Collections that are used by any of the Items in the catalog. |
+| features    | **REQUIRED.** \[[Item](https://github.com/radiantearth/stac-spec/tree/master/item-spec/item-spec.md#item-fields)] | An array of STAC Items |
