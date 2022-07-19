@@ -4,7 +4,7 @@
 - **Identifier:** <https://stac-extensions.github.io/single-file-stac/v1.0.0/schema.json>
 - **Field Name Prefix:** -
 - **Scope:** Item, Collection
-- **Extension [Maturity Classification](https://github.com/radiantearth/stac-spec/tree/master/extensions/README.md#extension-maturity):** Proposal
+- **Extension [Maturity Classification](https://github.com/radiantearth/stac-spec/tree/master/extensions/README.md#extension-maturity):** **Deprecated**
 - **Owner**: @matthewhanson
 
 An extension to provide a set of Collections and Items within a single file catalog. The single file is a STAC catalog that contains everything
@@ -12,6 +12,8 @@ that would normally be in a linked set of STAC files. This format is useful to s
 from derived data that should remain portable. It is most useful for saving the results of a search from a STAC API, as the 
 Items, Collections, and optionally the search parameters are all saved within the single file. Hierarchical links have no meaning in a 
 single file STAC, and so, if present, should be removed when creating a single file catalog.
+
+**Please note that this extension is now deprecated with the potential to be removed. It should be transitioned out of usage as soon as possible. Refrain from using it in new implementations.**
 
 - Examples:
   - [STAC example](examples/item-collection.json): Shows the basic usage of the extension in a STAC ItemCollection
